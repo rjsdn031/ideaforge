@@ -9,16 +9,18 @@ import Footer from './components/Footer';
 const App = () => {
   return (
     <BrowserRouter>
-      <Header />
-      <main className="main">
-        <Routes>
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1 p-4">
+          <Routes>
           <Route path="/" element={<MainPage />} />
           {/* <Route path="/posts/:slug" element={<PostDetail />} /> */}
           {/* <Route path="/tags/:tag" element={<TagPage />} /> */}
           {/* <Route path="/about" element={<AboutPage />} /> */}
         </Routes>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 };

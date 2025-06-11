@@ -11,13 +11,11 @@ const MainPage = () => {
   }, []);
 
   return (
-    <div>
-      <main className="main">
-        {posts.map(post => (
-          <PostCard key={post.slug} post={post} />
-        ))}
-      </main>
-    </div>
+    <section className="w-full max-w-4xl mx-auto p-4">
+      {posts.map(post => (
+        <PostCard key={post.slug} post={post} />
+      ))}
+    </section>
   );
 };
 
