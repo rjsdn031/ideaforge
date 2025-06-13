@@ -1,0 +1,10 @@
+[
+  {
+    "title": "test",
+    "slug": "first-post",
+    "summary": "테스트 글입니다",
+    "tags": ["test"],
+    "date": "2025-06-11",
+    "thumbnailUrl": ""
+  }
+]
