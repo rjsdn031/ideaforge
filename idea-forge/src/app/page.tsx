@@ -1,16 +1,9 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import PostCard from '@/components/PostCard';
+import { fetchNotionPost } from '@/utils/server/fetchNotionPosts';
 import type { Post } from '@/types/post';
-import { fetchPosts } from '@/utils/fetchPosts';
 
-export default function HomePage() {
-  const [posts, setPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    fetchPosts().then(setPosts);
-  }, []);
+const HomePage = async () => {
+  const posts: Post[] = await fetchNotionPost();
 
   return (
     <section className="w-full max-w-4xl mx-auto p-4">
@@ -19,4 +12,6 @@ export default function HomePage() {
       ))}
     </section>
   );
-}
+};
+
+export default HomePage;

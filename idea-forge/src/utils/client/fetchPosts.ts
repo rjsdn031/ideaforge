@@ -1,5 +1,5 @@
-import type { Post } from '../types/post';
-import mockData from '../data/mockPosts.json';
+import type { Post } from '../../types/post';
+import mockData from '../../data/mockPosts.json';
 
 export const fetchPosts = async (): Promise<Post[]> => {
   // 실제로는 API 호출

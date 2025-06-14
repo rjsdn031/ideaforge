@@ -1,17 +1,17 @@
-import { fetchPostBySlug } from '@/utils/fetchPosts';
+import { fetchPostBySlug } from '@/utils/server/fetchNotionPostBySlug';
 import PostBody from '@/components/PostBody';
 import { notFound } from 'next/navigation';
+import { fetchAllSlugs } from '@/utils/server/fetchAllSlugs';
 
-interface PostDetailPageProps {
-  params: { slug: string };
+export async function generateStaticParams() {
+  const slugs = await fetchAllSlugs();
+
+  return slugs.map((slug) => ({ slug }));
 }
 
-const PostDetailPage: React.FC<PostDetailPageProps> = async ({ params }) => {
+const PostDetailPage = async ({ params }: { params: { slug: string } }) => {
   const post = await fetchPostBySlug(params.slug);
-
-  if (!post) {
-    notFound();
-  }
+  if (!post) notFound();
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4">
