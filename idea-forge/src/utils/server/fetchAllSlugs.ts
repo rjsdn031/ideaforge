@@ -1,4 +1,5 @@
 import { Client } from '@notionhq/client';
+import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const databaseId = process.env.NOTION_DATABASE_ID!;
@@ -13,7 +14,16 @@ export const fetchAllSlugs = async (): Promise<string[]> => {
     },
   });
 
-  return response.results.map(
-    (page: any) => page.properties.slug.rich_text?.[0]?.plain_text
-  ).filter(Boolean);
+  return (response.results as PageObjectResponse[])
+    .map((page) => {
+      const prop = page.properties['slug'];
+      if (
+        prop?.type === 'rich_text' &&
+        prop.rich_text.length > 0
+      ) {
+        return prop.rich_text[0].plain_text;
+      }
+      return null;
+    })
+    .filter(Boolean) as string[];
 };

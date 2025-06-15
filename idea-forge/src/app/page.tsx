@@ -1,9 +1,10 @@
+import { fetchNotionPosts } from '@/utils/server/fetchNotionPosts';
 import PostCard from '@/components/PostCard';
-import { fetchNotionPost } from '@/utils/server/fetchNotionPosts';
-import type { Post } from '@/types/post';
+
+export const revalidate = 60;
 
 const HomePage = async () => {
-  const posts: Post[] = await fetchNotionPost();
+  const posts = await fetchNotionPosts();
 
   return (
     <section className="w-full max-w-4xl mx-auto p-4">
