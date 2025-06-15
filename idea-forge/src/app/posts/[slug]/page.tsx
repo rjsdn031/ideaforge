@@ -1,3 +1,5 @@
+export const revalidate = 60; // ISR
+
 import { fetchPostBySlug } from '@/utils/server/fetchNotionPostBySlug';
 import PostBody from '@/components/PostBody';
 import { notFound } from 'next/navigation';
