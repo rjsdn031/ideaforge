@@ -1,8 +1,6 @@
 import { Client } from '@notionhq/client';
 import type {
   PageObjectResponse,
-  MultiSelectPropertyItemObjectResponse,
-  RichTextItemResponse,
 } from '@notionhq/client/build/src/api-endpoints';
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
