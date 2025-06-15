@@ -1,17 +1,20 @@
-export const revalidate = 60; // ISR
-
 import { fetchPostBySlug } from '@/utils/server/fetchNotionPostBySlug';
-import PostBody from '@/components/PostBody';
 import { notFound } from 'next/navigation';
+import PostBody from '@/components/PostBody';
 import { fetchAllSlugs } from '@/utils/server/fetchAllSlugs';
+
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const slugs = await fetchAllSlugs();
-
   return slugs.map((slug) => ({ slug }));
 }
 
-const PostDetailPage = async ({ params }: { params: { slug: string } }) => {
+export default async function PostDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const post = await fetchPostBySlug(params.slug);
   if (!post) notFound();
 
@@ -20,6 +23,4 @@ const PostDetailPage = async ({ params }: { params: { slug: string } }) => {
       <PostBody content={post.content} />
     </div>
   );
-};
-
-export default PostDetailPage;
+}
