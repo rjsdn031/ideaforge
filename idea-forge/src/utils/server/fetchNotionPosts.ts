@@ -1,7 +1,5 @@
 import { Client } from '@notionhq/client';
-import type {
-  PageObjectResponse,
-} from '@notionhq/client/build/src/api-endpoints';
+import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const databaseId = process.env.NOTION_DATABASE_ID!;
@@ -12,6 +10,7 @@ export interface PostMeta {
   date: string;
   tags: string[];
   summary: string;
+  thumbnailUrl?: string;
 }
 
 export const fetchNotionPosts = async (): Promise<PostMeta[]> => {
@@ -20,35 +19,36 @@ export const fetchNotionPosts = async (): Promise<PostMeta[]> => {
     sorts: [{ property: 'date', direction: 'descending' }],
   });
 
-  return (response.results as PageObjectResponse[])
-    .map((page) => {
-      const { properties } = page;
+  return (response.results as PageObjectResponse[]).map((page) => {
+    const { properties, cover } = page;
 
-      const slugProp = properties['slug'];
-      const slug = slugProp?.type === 'rich_text'
-        ? slugProp.rich_text?.[0]?.plain_text ?? ''
-        : '';
+    const slug = properties['slug']?.type === 'rich_text'
+      ? properties['slug'].rich_text?.[0]?.plain_text ?? ''
+      : '';
 
-      const titleProp = properties['title'];
-      const title = titleProp?.type === 'title'
-        ? titleProp.title?.[0]?.plain_text ?? 'Untitled'
-        : 'Untitled';
+    const title = properties['title']?.type === 'title'
+      ? properties['title'].title?.[0]?.plain_text ?? 'Untitled'
+      : 'Untitled';
 
-      const dateProp = properties['date'];
-      const date = dateProp?.type === 'date'
-        ? dateProp.date?.start ?? ''
-        : '';
+    const date = properties['date']?.type === 'date'
+      ? properties['date'].date?.start ?? ''
+      : '';
 
-      const tagsProp = properties['tags'];
-      const tags = tagsProp?.type === 'multi_select'
-        ? tagsProp.multi_select.map((t) => t.name)
-        : [];
+    const tags = properties['tags']?.type === 'multi_select'
+      ? properties['tags'].multi_select.map((t) => t.name)
+      : [];
 
-      const summaryProp = properties['summary'];
-      const summary = summaryProp?.type === 'rich_text'
-        ? summaryProp.rich_text?.[0]?.plain_text ?? ''
-        : '';
+    const summary = properties['summary']?.type === 'rich_text'
+      ? properties['summary'].rich_text?.[0]?.plain_text ?? ''
+      : '';
 
-      return { slug, title, date, tags, summary };
-    });
+    let thumbnailUrl: string | undefined = undefined;
+    if (cover?.type === 'external') {
+      thumbnailUrl = cover.external.url;
+    } else if (cover?.type === 'file') {
+      thumbnailUrl = cover.file.url;
+    }
+
+    return { slug, title, date, tags, summary, thumbnailUrl };
+  });
 };
