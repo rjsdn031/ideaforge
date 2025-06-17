@@ -15,13 +15,14 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       <div className={styles.content}>
         <h2 className={styles.title}>{post.title}</h2>
         <p className={styles.summary}>{post.summary}</p>
+        <div className={styles.tags}>
+          {post.tags.map(tag => (
+            <span key={tag} className={styles.tag}>#{tag}</span>
+          ))}
+        </div>
         <div className={styles.footer}>
-          <span className={styles.date}>{new Date(post.date).toLocaleDateString()}</span>
-          <div className={styles.tags}>
-            {post.tags.map(tag => (
-              <span key={tag} className={styles.tag}>#{tag}</span>
-            ))}
-          </div>
+          <span>{new Date(post.date).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+          {/* 원하는 경우 댓글 수, 좋아요 수 등도 추가 가능 */}
         </div>
       </div>
     </Link>
