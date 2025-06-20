@@ -16,7 +16,13 @@ export interface PostMeta {
 export const fetchNotionPosts = async (): Promise<PostMeta[]> => {
   const response = await notion.databases.query({
     database_id: databaseId,
-    sorts: [{ property: 'date', direction: 'descending' }],
+    sorts: [{ property: 'publishedAt', direction: 'descending' }],
+    filter: {
+      property: 'private',
+      checkbox: {
+        equals: false,
+      },
+    },
   });
 
   return (response.results as PageObjectResponse[]).map((page) => {
@@ -30,8 +36,8 @@ export const fetchNotionPosts = async (): Promise<PostMeta[]> => {
       ? properties['title'].title?.[0]?.plain_text ?? 'Untitled'
       : 'Untitled';
 
-    const date = properties['date']?.type === 'date'
-      ? properties['date'].date?.start ?? ''
+    const date = properties['publishedAt']?.type === 'date'
+      ? properties['publishedAt'].date?.start ?? ''
       : '';
 
     const tags = properties['tags']?.type === 'multi_select'
@@ -41,6 +47,10 @@ export const fetchNotionPosts = async (): Promise<PostMeta[]> => {
     const summary = properties['summary']?.type === 'rich_text'
       ? properties['summary'].rich_text?.[0]?.plain_text ?? ''
       : '';
+
+    const isPrivate = {
+
+    }
 
     let thumbnailUrl: string | undefined = undefined;
     if (cover?.type === 'external') {
