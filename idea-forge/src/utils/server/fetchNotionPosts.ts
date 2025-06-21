@@ -48,10 +48,6 @@ export const fetchNotionPosts = async (): Promise<PostMeta[]> => {
       ? properties['summary'].rich_text?.[0]?.plain_text ?? ''
       : '';
 
-    const isPrivate = {
-
-    }
-
     let thumbnailUrl: string | undefined = undefined;
     if (cover?.type === 'external') {
       thumbnailUrl = cover.external.url;

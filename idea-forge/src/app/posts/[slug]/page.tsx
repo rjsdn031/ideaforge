@@ -16,11 +16,16 @@ export default async function PostDetailPage({
   params: { slug: string };
 }) {
   const post = await fetchPostBySlug(params.slug);
-  if (!post) notFound();
+  if (!post) return notFound();
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-4">
-      <PostBody recordMap={post.recordMap} />
+    <div className="w-full max-w-4xl mx-auto px-0 sm:px-2 md:px-4">
+      <PostBody
+        recordMap={post.recordMap}
+        title={post.title}
+        date={post.date}
+        tags={post.tags}
+      />
     </div>
   );
 }

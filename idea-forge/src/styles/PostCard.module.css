@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem;
+  padding-bottom: 3rem;
   border-bottom: 1px solid #eee;
   text-decoration: none;
   color: inherit;
