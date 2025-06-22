@@ -66,19 +66,22 @@ export const fetchPostBySlug = async (
 
   // console.log(dateRaw?.value?.[0]?.[1]?.[0]?.[1].start_date);
   const date =
-  (dateRaw?.value?.[0]?.[1]?.[0]?.[1].start_date)
-    ? new Date(
+    (dateRaw?.value?.[0]?.[1]?.[0]?.[1].start_date)
+      ? new Date(
         dateRaw?.value?.[0]?.[1]?.[0]?.[1].start_date
       ).toLocaleDateString('ko-KR', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
       })
-    : undefined;
+      : undefined;
 
   // console.log(date);
   const tags = Array.isArray(tagsRaw?.value)
-    ? tagsRaw.value.map((tag: any) => tag?.[0])
+    ? tagsRaw.value
+      .flat()
+      .flatMap((v: string) => v.split(',')) // split
+      .map((tag) => tag.trim())
     : [];
 
   return {

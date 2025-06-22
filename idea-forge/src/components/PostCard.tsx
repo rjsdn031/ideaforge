@@ -1,6 +1,7 @@
 import type { Post } from '../types/post';
 import Link from 'next/link';
 import styles from '../styles/PostCard.module.css';
+import Tag from './Tag';
 
 interface PostCardProps {
   post: Post;
@@ -16,8 +17,8 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         <h2 className={styles.title}>{post.title}</h2>
         <p className={styles.summary}>{post.summary}</p>
         <div className={styles.tags}>
-          {post.tags.map(tag => (
-            <span key={tag} className={styles.tag}>#{tag}</span>
+          {post.tags.map((tag) => (
+            <Tag key={tag} name={tag} />
           ))}
         </div>
         <div className={styles.footer}>
