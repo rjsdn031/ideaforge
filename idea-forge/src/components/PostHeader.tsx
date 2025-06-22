@@ -9,7 +9,7 @@ interface PostHeaderProps {
 
 const PostHeader = ({ title, date, tags = [] }: PostHeaderProps) => {
   return (
-    <>
+    <div className={styles.wrapper}>
       <h1 className={styles.title}>{title}</h1>
 
        <div className={styles.meta}>
@@ -18,7 +18,7 @@ const PostHeader = ({ title, date, tags = [] }: PostHeaderProps) => {
           <Tag key={tag} name={tag} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
