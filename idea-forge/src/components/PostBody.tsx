@@ -40,7 +40,11 @@ const PostBody = ({ recordMap }: PostBodyProps) => {
         recordMap={recordMap}
         fullPage={false}
         darkMode={isDarkMode}
-        components={{ Code, Equation, Modal }}
+        components={{
+          Code,
+          Equation,
+          Modal,
+        }}
       />
     </div>
   );
