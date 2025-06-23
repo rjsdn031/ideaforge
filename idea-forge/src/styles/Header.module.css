@@ -25,3 +25,22 @@
 .nav a:hover {
   color: #000;
 }
+
+@media (prefers-color-scheme: dark) {
+  .header {
+    background-color: #0a0a0a;
+    border-bottom: 1px solid #333;
+  }
+
+  .logo {
+    color: #ededed;
+  }
+
+  .nav a {
+    color: #bbb;
+  }
+
+  .nav a:hover {
+    color: #fff;
+  }
+}

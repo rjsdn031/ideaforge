@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import 'react-notion-x/src/styles.css';
 import type { ExtendedRecordMap } from 'notion-types';
@@ -19,12 +20,26 @@ interface PostBodyProps {
 }
 
 const PostBody = ({ recordMap }: PostBodyProps) => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDarkMode(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => {
+      setIsDarkMode(e.matches);
+    };
+    mediaQuery.addEventListener('change', handler);
+
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       <NotionRenderer
         recordMap={recordMap}
         fullPage={false}
-        darkMode={false}
+        darkMode={isDarkMode}
         components={{ Code, Equation, Modal }}
       />
     </div>

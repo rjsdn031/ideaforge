@@ -8,3 +8,11 @@
   margin-top: 4rem;
   background-color: #fafafa;
 }
+
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background-color: #121212;
+    color: #aaa;
+    border-top: 1px solid #333;
+  }
+}

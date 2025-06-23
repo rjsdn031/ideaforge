@@ -55,3 +55,20 @@
   gap: 0.4rem;
 }
 
+@media (prefers-color-scheme: dark) {
+  .card {
+    border-bottom: 1px solid #333;
+  }
+
+  .card:hover {
+    background-color: #1a1a1a;
+  }
+
+  .summary {
+    color: #aaa;
+  }
+
+  .footer {
+    color: #777;
+  }
+}
