@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '../styles/PostHeader.module.css';
 import Tag from './Tag';
 

@@ -1,0 +1,25 @@
+.nav {
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+
+.item {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  display: block;
+  text-decoration: none;
+}
+
+.item:hover {
+  text-decoration: underline;
+}
+
+.indent-1 {
+  margin-left: 1rem;
+}
+.indent-2 {
+  margin-left: 2rem;
+}
+.indent-3 {
+  margin-left: 3rem;
+}

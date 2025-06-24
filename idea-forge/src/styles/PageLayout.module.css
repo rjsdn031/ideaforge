@@ -1,0 +1,30 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  width: 100%;
+  max-width: 768px; /* roughly Tailwind's max-w-3xl */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.aside {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .aside {
+    display: block;
+    width: 16rem; /* w-64 */
+    position: absolute;
+    top: 0;
+    right: 1rem; /* right-4 */
+    position: sticky;
+    height: calc(100vh - 6rem);
+    overflow-y: auto;
+  }
+}

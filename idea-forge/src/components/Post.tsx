@@ -1,3 +1,5 @@
+'use client';
+
 import PostHeader from './PostHeader';
 import PostBody from './PostBody';
 import type { ExtendedRecordMap } from 'notion-types';
