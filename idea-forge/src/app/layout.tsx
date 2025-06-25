@@ -12,6 +12,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang="ko">
+      <head>
+        <link rel="icon" href="/Logo_ideaforge.svg" />
+      </head>
       <body className="bg-white text-gray-900">
         <div className="min-h-screen flex flex-col items-center">
           <Header onHeightChange={setHeaderHeight} />
