@@ -3,16 +3,37 @@
   justify-content: space-between;
   align-items: center;
   width: 100vw;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem; /* 기본: 모바일 */
   border-bottom: 1px solid #eee;
   background-color: #fff;
 }
 
+@media (min-width: 640px) {
+  .header {
+    padding: 1rem 2rem; /* sm 이상일 때 여유 있게 */
+  }
+}
+
 .logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 0.5rem;
+}
+
+/* 텍스트 로고 */
+.logo span {
   font-size: 1.5rem;
   font-weight: bold;
   color: #222;
-  text-decoration: none;
+}
+
+/* SVG 로고 */
+.logo svg {
+  width: 2rem;
+  height: 2rem;
+  fill: #222;
+  transition: fill 0.3s ease;
 }
 
 .nav a {
@@ -32,8 +53,12 @@
     border-bottom: 1px solid #333;
   }
 
-  .logo {
+  .logo span {
     color: #ededed;
+  }
+
+  .logo svg {
+    fill: #ededed;
   }
 
   .nav a {

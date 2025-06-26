@@ -13,7 +13,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
       <head>
-        <link rel="icon" href="/Logo_ideaforge.svg" />
+        <link rel="icon" href="/logo_b.svg"  media="(prefers-color-scheme: light)"/>
+        <link rel="icon" href="/logo_w.svg"  media="(prefers-color-scheme: dark)"/>
       </head>
       <body className="bg-white text-gray-900">
         <div className="min-h-screen flex flex-col items-center">
