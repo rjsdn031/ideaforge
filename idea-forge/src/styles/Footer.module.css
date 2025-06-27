@@ -9,6 +9,12 @@
   background-color: #fafafa;
 }
 
+.banners {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
 @media (prefers-color-scheme: dark) {
   .footer {
     background-color: #121212;
