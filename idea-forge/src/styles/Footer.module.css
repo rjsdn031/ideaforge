@@ -13,6 +13,14 @@
   display: flex;
   gap: 1rem;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.githubBanner {
+  width: auto;
+  height: 2rem;
+  fill: currentColor;
 }
 
 @media (prefers-color-scheme: dark) {
