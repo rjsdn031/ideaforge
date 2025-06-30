@@ -7,7 +7,7 @@ import type { ExtendedRecordMap } from 'notion-types';
 import { Code } from 'react-notion-x/build/third-party/code';
 import { Equation } from 'react-notion-x/build/third-party/equation';
 import { Modal } from 'react-notion-x/build/third-party/modal';
-import { Collection } from 'react-notion-x/build/third-party/collection';
+// import { Collection } from 'react-notion-x/build/third-party/collection';
 import { Pdf } from 'react-notion-x/build/third-party/pdf';
 
 import styles from '../styles/PostBody.module.css';
@@ -44,7 +44,7 @@ const PostBody = ({ recordMap }: PostBodyProps) => {
         darkMode={isDarkMode}
         components={{
       Code,
-      Collection,
+      // Collection,
       Equation,
       Modal,
       Pdf
