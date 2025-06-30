@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import styles from '../styles/Header.module.css';
 
@@ -9,7 +9,26 @@ interface HeaderProps {
 }
 
 const Header = ({ onHeightChange }: HeaderProps) => {
+  const [showHeader, setShowHeader] = useState(true);
+  const lastScrollY = useRef(0);
   const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setShowHeader(false); // 아래로 스크롤
+      } else {
+        setShowHeader(true); // 위로 스크롤
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const updateHeight = () => {
@@ -31,7 +50,10 @@ const Header = ({ onHeightChange }: HeaderProps) => {
   }, [onHeightChange]);
 
   return (
-    <header ref={headerRef} className={styles.header}>
+    <header
+      ref={headerRef}
+      className={`${styles.header} ${showHeader ? styles.show : styles.hide}`}
+    >
       <Link href="/" className={styles.logo}>
         <span className="hidden sm:inline">Kaca&apos;s IdeaForge</span>
 
