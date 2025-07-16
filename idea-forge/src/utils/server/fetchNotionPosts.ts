@@ -45,7 +45,7 @@ export const fetchNotionPosts = async (): Promise<PostMeta[]> => {
       : [];
 
     const summary = properties['summary']?.type === 'rich_text'
-      ? properties['summary'].rich_text?.[0]?.plain_text ?? ''
+      ? properties['summary'].rich_text.map(rt => rt.plain_text).join('') ?? ''
       : '';
 
     let thumbnailUrl: string | undefined = undefined;
